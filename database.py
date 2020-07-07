@@ -14,12 +14,24 @@ class Connection:
     self.connection.close()
 
   def add(self, titles: list, links: list):
-    connection = sqlite3.connect('db.sqlite')
-    cursor = connection.cursor()
+    self.connection = sqlite3.connect('db.sqlite')
+    self.cursor = self.connection.cursor()
 
-    for title, link in zip(titles, links):
-      title = title.replace("'", "")
-      cursor.execute(f"INSERT INTO manchets (title, link) VALUES ('{title}', '{link}')")
-  
-    connection.commit()
-    connection.close()
+    self.titles = titles
+    self.links = links
+
+    self.machets_on_db = self.cursor.execute("SELECT title FROM manchets")
+    self.list_of_manchets_on_db: list = []
+
+    for i in self.machets_on_db:
+      self.list_of_manchets_on_db.append(i[0])
+
+
+    for self.title, self.link in zip(self.titles, self.links):
+      self.title = self.title.replace("'", "")
+      
+      if self.title not in self.list_of_manchets_on_db:
+        self.cursor.execute(f"INSERT INTO manchets (title, link) VALUES ('{self.title}', '{self.link}')")
+      
+    self.connection.commit()
+    self.connection.close()
