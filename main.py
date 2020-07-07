@@ -9,5 +9,6 @@ html = BeautifulSoup(html_data, 'html.parser')
 finder = html.find_all(class_='feed-post-link gui-color-primary gui-color-hover')
 
 for i in finder:
-  print(i.get_text(), i.get('href'))
-  print()
+  title = i.get_text()
+  link = i.get('href')
+
