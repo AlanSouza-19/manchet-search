@@ -1,7 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 import newManchet
+from database import Connection
 
+connection = Connection()
 
 r = requests.get('https://g1.globo.com/')
 
@@ -17,4 +19,4 @@ for i in finder:
   links.append(i.get('href'))
 
 
-newManchet.add(titles, links)
+connection.add(titles, links)
