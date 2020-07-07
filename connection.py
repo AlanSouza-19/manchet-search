@@ -3,9 +3,7 @@ import sqlite3
 connection = sqlite3.connect('database.sqlite')
 
 cursor = connection.cursor()
-
-cursor.execute('''CREATE TABLE IF NOT EXISTS manchets (title text, link text)''')
+cursor.executescript('''CREATE TABLE IF NOT EXISTS manchets (id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(255), link VARCHAR(255))''')
 
 connection.commit()
-
 connection.close()
