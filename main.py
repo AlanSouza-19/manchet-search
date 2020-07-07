@@ -1,8 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import sqlite3
-from time import sleep
-# import asyncio
 
 
 def addNewManchet(a:list, b: list):
