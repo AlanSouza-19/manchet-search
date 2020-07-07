@@ -20,16 +20,16 @@ class Connection:
     self.titles = titles
     self.links = links
 
-    self.machets_on_db = self.cursor.execute("SELECT title FROM manchets")
+    self.manchets_on_db = self.cursor.execute("SELECT title FROM manchets")
     self.list_of_manchets_on_db: list = []
 
-    for i in self.machets_on_db:
+    for i in self.manchets_on_db:
       self.list_of_manchets_on_db.append(i[0])
 
 
     for self.title, self.link in zip(self.titles, self.links):
       self.title = self.title.replace("'", "")
-      
+
       if self.title not in self.list_of_manchets_on_db:
         self.cursor.execute(f"INSERT INTO manchets (title, link) VALUES ('{self.title}', '{self.link}')")
       
