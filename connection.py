@@ -1,6 +1,6 @@
 import sqlite3
 
-connection = sqlite3.connect('database.sqlite')
+connection = sqlite3.connect('db.sqlite')
 
 cursor = connection.cursor()
 cursor.executescript('''

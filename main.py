@@ -1,19 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import sqlite3
-
-
-def addNewManchet(a:list, b: list):
-  connection = sqlite3.connect('database.sqlite')
-  cursor = connection.cursor()
-  z = zip(a, b)
-
-  for title, link in z:
-    title = title.replace("'", "")
-    cursor.execute(f"INSERT INTO manchets (title, link) VALUES ('{title}', '{link}')")
-  
-  connection.commit()
-  connection.close()
+import newManchet
 
 
 r = requests.get('https://g1.globo.com/')
@@ -30,4 +17,4 @@ for i in finder:
   links.append(i.get('href'))
 
 
-addNewManchet(titles, links)
+newManchet.add(titles, links)
