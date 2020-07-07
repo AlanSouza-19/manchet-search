@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import newManchet
 from database import Connection
 
 connection = Connection()
